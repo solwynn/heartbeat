@@ -50,6 +50,7 @@ run_client: (run cl)
 watch_server: (watch s)
 watch_client: (watch cl)
 
+# this can't be good practice
 commitpush reason:
     git add .
     git commit -m {{q}}{{reason}}{{q}}
