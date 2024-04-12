@@ -4,6 +4,7 @@ c := "/Cargo.toml"
 h := "heartbeat-"
 s := "server"
 cl := "client"
+q := '"'
 
 alias bs := build_server
 alias bc := build_client
@@ -48,3 +49,8 @@ run_client: (run cl)
 # requires watchexec https://github.com/watchexec/watchexec
 watch_server: (watch s)
 watch_client: (watch cl)
+
+commitpush reason:
+    git add .
+    git commit -m {{q}}{{reason}}{{q}}
+    git push origin dev
