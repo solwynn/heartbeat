@@ -29,13 +29,11 @@ build target:
 run target:
     cargo run --manifest-path={{h}}{{target}}{{c}}
 
-# intended use:
-#   just watch server
-#   just watch client
-#   this will just build lol i have no idea how to make cargo watch
-#   or watchexec work correctly with cargo run
+# does not work lol
 watch target:
-    watchexec -w {{h}}{{target}}/src -- just build {{target}}
+    cargo watch -C {{h}}{{s}} -x build && run  
+
+# watchexec -w {{h}}{{target}}/src -- just build {{target}}
 
 build_server: (build s)
 build_client: (build cl)
