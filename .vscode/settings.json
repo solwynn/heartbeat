@@ -1,6 +1,17 @@
 {
+
+    "files.associations": {
+        "config.toml.template": "toml",
+    },
+
+
     "rust-analyzer.linkedProjects": [
         "./heartbeat-server/Cargo.toml",
-        "./heartbeat-client/Cargo.toml"
+        "./heartbeat-client/Cargo.toml",
+    ],
+
+    "folder-path-color.folders": [
+        { "path": "heartbeat-server", "symbol": "S", "tooltip": "Server" },
+        { "path": "heartbeat-client", "symbol": "C", "tooltip": "Client" },
     ]
 }
