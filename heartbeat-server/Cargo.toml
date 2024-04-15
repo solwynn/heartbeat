@@ -13,3 +13,5 @@ rumqttc = "0.24.0"
 tokio = { version = "1", features = ["full"] }
 config = "0.14.0"
 serde = { version = "1.0", features = ["derive"] }
+structmap = "0.1"
+structmap-derive = "0.1"

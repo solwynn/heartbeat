@@ -8,6 +8,7 @@
     "rust-analyzer.linkedProjects": [
         "./heartbeat-server/Cargo.toml",
         "./heartbeat-client/Cargo.toml",
+        ".\\heartbeat-client\\Cargo.toml"
     ],
 
     "folder-path-color.folders": [
