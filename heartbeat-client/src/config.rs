@@ -83,7 +83,7 @@ pub fn check() -> ClientConfig {
                     io::stdout().flush().expect("Error flushing stdout");
                     io::stdin().read_line(&mut cont).expect("Error reading stdin");
 
-                    if default.trim().to_lowercase() == "n" { process::exit(1); }
+                    if cont.trim().to_lowercase() == "n" { process::exit(1); }
                     println!("Continuing execution...");
 
                     return cc;
