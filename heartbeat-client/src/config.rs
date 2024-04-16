@@ -14,6 +14,7 @@ use toml;
 pub struct ClientConfig {
     key: String,
     mqtt_host: String,
+    port: i64,
 }
 
 impl Default for ClientConfig {
@@ -21,12 +22,13 @@ impl Default for ClientConfig {
         Self {
             key: String::from(""),
             mqtt_host: String::from("127.0.0.1"),
+            port: 1833
         }
     }
 }
 
 pub fn check() -> ClientConfig {
-    let mut cc: ClientConfig;
+    let cc: ClientConfig;
     let mut exedirbuf = env::current_exe().unwrap();
     exedirbuf.pop();
     exedirbuf.push("config.toml");
@@ -55,7 +57,7 @@ pub fn check() -> ClientConfig {
             ConfigError::Frozen => panic!("Frozen: {e:#?}"),
             ConfigError::NotFound(_) => panic!("NotFound: {e:#?}"),
             ConfigError::PathParse(_) => panic!("PathParse: {e:#?}"),
-            ConfigError::FileParse { uri, cause } => panic!("FileParse: {cause:#?}"),
+            ConfigError::FileParse { uri, cause } => panic!("FileParse: uri: {uri:#?}, cause: {cause:#?}"),
             ConfigError::Type { origin, unexpected, expected, key } 
                 => panic!("Type -- Origin: {:#?}, unexpected: {:#?}, expected: {:#?}, key: {:#?}", origin, unexpected, expected, key),
             ConfigError::Message(_) => panic!("Message: {e:#?}"),
@@ -72,7 +74,7 @@ pub fn check() -> ClientConfig {
                     println!("Generating config.toml...");
 
                     cc = ClientConfig::default();
-;
+
                     let toml = toml::to_string(&cc).unwrap();
 
                     let mut f = File::create_new(exedir).unwrap();
