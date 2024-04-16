@@ -4,7 +4,9 @@ Consists of [heartbeat-client](heartbeat-client) and [heartbeat-server](heartbea
 
 uses [Just](https://github.com/casey/just) to handle build stuff:  
 ```
-just run {target}
+# targets: server, client
+
 just build {target}
+just run {target}
 just watch {target} # not currently functional, prefer `just build {target}; just run {target};`
 ```
