@@ -11,26 +11,20 @@ use toml;
 #[derive(FromMap)]
 #[derive(Debug)]
 #[derive(Serialize)]
-pub struct ClientConfig {
-    pub key: String,
-    pub mqtt_host: String,
-    pub mqtt_port: i64,
-    pub mqtt_topic: String,
+pub struct ServerConfig {
+    
 }
 
-impl Default for ClientConfig {
+impl Default for ServerConfig {
     fn default() -> Self {
         Self {
-            key: String::from(""),
-            mqtt_host: String::from("127.0.0.1"),
-            mqtt_port: 1883,
-            mqtt_topic: String::from("test/topic"),
+            
         }
     }
 }
 
-pub fn get() -> ClientConfig {
-    let cc: ClientConfig;
+pub fn get() -> ServerConfig {
+    let cc: ServerConfig;
     let mut exedirbuf = env::current_exe().unwrap();
     exedirbuf.pop();
     exedirbuf.push("config.toml");
@@ -50,7 +44,7 @@ pub fn get() -> ClientConfig {
                 gm.insert(String::from(key), structmap::value::Value::String(String::from(value)));
             }
         
-            cc = ClientConfig::from_genericmap(gm);
+            cc = ServerConfig::from_genericmap(gm);
         
             return cc;
         }
@@ -75,7 +69,7 @@ pub fn get() -> ClientConfig {
                     if default.trim().to_lowercase() == "n" { process::exit(1); }
                     println!("Generating config.toml...");
 
-                    cc = ClientConfig::default();
+                    cc = ServerConfig::default();
 
                     let toml = toml::to_string(&cc).unwrap();
 
