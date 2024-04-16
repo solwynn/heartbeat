@@ -12,9 +12,10 @@ use toml;
 #[derive(Debug)]
 #[derive(Serialize)]
 pub struct ClientConfig {
-    key: String,
-    mqtt_host: String,
-    port: i64,
+    pub key: String,
+    pub mqtt_host: String,
+    pub mqtt_port: i64,
+    pub mqtt_topic: String,
 }
 
 impl Default for ClientConfig {
@@ -22,12 +23,13 @@ impl Default for ClientConfig {
         Self {
             key: String::from(""),
             mqtt_host: String::from("127.0.0.1"),
-            port: 1833
+            mqtt_port: 1883,
+            mqtt_topic: String::from("test/topic"),
         }
     }
 }
 
-pub fn check() -> ClientConfig {
+pub fn get() -> ClientConfig {
     let cc: ClientConfig;
     let mut exedirbuf = env::current_exe().unwrap();
     exedirbuf.pop();

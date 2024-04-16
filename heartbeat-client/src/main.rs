@@ -5,11 +5,10 @@ mod config;
 
 #[tokio::main]
 async fn main() {
-    //let options = MqttOptions::new("client", "localhost", 1883);
-    let options = MqttOptions::new("client", "localhost", 1883);
-    let (client, mut event_loop) = AsyncClient::new(options, 10);
+    let conf = config::get();
 
-    config::check();
+    let options = MqttOptions::new(conf.mqtt_topic, conf.mqtt_host, conf.mqtt_port.try_into().unwrap());
+    let (client, mut event_loop) = AsyncClient::new(options, 10);
 
     tokio::spawn(async move {
         loop {
