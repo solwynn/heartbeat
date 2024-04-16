@@ -15,3 +15,4 @@ config = "0.14.0"
 serde = { version = "1.0", features = ["derive"] }
 structmap = "0.1"
 structmap-derive = "0.1"
+toml = "0.4.2"

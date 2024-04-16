@@ -11,14 +11,23 @@ use toml;
 #[derive(FromMap)]
 #[derive(Debug)]
 #[derive(Serialize)]
+#[derive(Clone)]
 pub struct ServerConfig {
-    
+    pub mqtt_host: String,
+    pub mqtt_port: i64,
+    pub mqtt_topic: String,
+    pub enable_discord_integration: bool,
+    pub discord_api_key: String,
 }
 
 impl Default for ServerConfig {
     fn default() -> Self {
         Self {
-            
+            mqtt_host: String::from("localhost"),
+            mqtt_port: 1883,
+            mqtt_topic: String::from("test-topic"),
+            enable_discord_integration: false,
+            discord_api_key: String::from(""),
         }
     }
 }

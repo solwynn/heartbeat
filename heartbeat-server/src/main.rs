@@ -3,12 +3,16 @@ use rumqttc::{MqttOptions, AsyncClient};
 use tokio::select;
 use tokio::time::{self, Duration};
 
+mod config;
+
 async fn index() -> impl Responder {
     "Hello from Actix-web with MQTT!"
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    let conf = config::get();
+
     let options = MqttOptions::new("test_client", "localhost", 1883);
     let ( client, mut event_loop) = AsyncClient::new(options, 10);
 

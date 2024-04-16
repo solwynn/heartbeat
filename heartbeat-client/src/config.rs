@@ -11,6 +11,7 @@ use toml;
 #[derive(FromMap)]
 #[derive(Debug)]
 #[derive(Serialize)]
+#[derive(Clone)]
 pub struct ClientConfig {
     pub key: String,
     pub mqtt_host: String,
